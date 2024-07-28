@@ -30,7 +30,7 @@ variable "instance_type" {
 
 variable "ami" {
   description = "The AMI to use for the instances"
-  default     = "ami-045f2d6eeb07ce8c0"
+  default     = "ami-062cf18d655c0b1e8"
 }
 
 variable "key_name" {
