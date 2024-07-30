@@ -14,6 +14,7 @@
 ### Terraform
 ```
 .
+.
 ├── main.tf
 ├── variables.tf
 ├── outputs.tf
@@ -30,6 +31,11 @@
 │   │   ├── main.tf
 │   │   ├── variables.tf
 │   │   ├── outputs.tf
+│   ├── rds/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   ├── outputs.tf
+
 
 ```
 
@@ -124,7 +130,8 @@ ansible/
 ## 구성
 
 ### Terraform 모듈
-Terraform 구성은 세 가지 모듈로 나뉩니다:
+Terraform 구성은 네 가지 모듈로 나뉩니다:
 1. **VPC**: VPC, 서브넷 및 관련 리소스를 생성합니다.
 2. **보안 그룹**: 인스턴스를 위한 보안 그룹을 구성합니다.
 3. **인스턴스**: Kubernetes 마스터 및 워커 노드를 위한 EC2 인스턴스를 생성합니다.
+4. **RDS**: DB를 위한 rds를 생성합니다.
