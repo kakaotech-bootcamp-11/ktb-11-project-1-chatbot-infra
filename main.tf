@@ -8,10 +8,11 @@ provider "aws" {
 
 module "vpc" {
   source = "./modules/vpc"
-  vpc_cidr           = var.vpc_cidr
+  vpc_cidr            = var.vpc_cidr
   public_subnet_a_cidr = var.public_subnet_a_cidr
   public_subnet_c_cidr = var.public_subnet_c_cidr
-  private_subnet_cidr = var.private_subnet_cidr
+  private_subnet_a_cidr = var.private_subnet_a_cidr
+  private_subnet_c_cidr = var.private_subnet_c_cidr
 }
 
 module "security_groups" {
@@ -26,5 +27,15 @@ module "instances" {
   key_name           = var.key_name
   public_subnet_a_id = module.vpc.public_subnet_a_id
   public_subnet_c_id = module.vpc.public_subnet_c_id
+  security_group_id  = module.security_groups.security_group_id
+}
+
+module "rds" {
+  source             = "./modules/rds"
+  db_name            = var.db_name
+  db_username        = var.db_username
+  db_password        = var.db_password
+  private_subnet_a_id = module.vpc.private_subnet_a_id
+  private_subnet_c_id = module.vpc.private_subnet_c_id
   security_group_id  = module.security_groups.security_group_id
 }

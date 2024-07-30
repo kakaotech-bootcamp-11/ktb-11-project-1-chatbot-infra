@@ -13,7 +13,12 @@ variable "public_subnet_c_cidr" {
   type        = string
 }
 
-variable "private_subnet_cidr" {
-  description = "The CIDR block for the private subnet"
+variable "private_subnet_a_cidr" {
+  description = "The CIDR block for the private subnet in availability zone a"
+  type        = string
+}
+
+variable "private_subnet_c_cidr" {
+  description = "The CIDR block for the private subnet in availability zone c"
   type        = string
 }

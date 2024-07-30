@@ -13,9 +13,14 @@ variable "public_subnet_c_cidr" {
   default     = "10.0.2.0/24"
 }
 
-variable "private_subnet_cidr" {
-  description = "The CIDR block for the private subnet"
+variable "private_subnet_a_cidr" {
+  description = "The CIDR block for the private subnet in availability zone a"
   default     = "10.0.3.0/24"
+}
+
+variable "private_subnet_c_cidr" {
+  description = "The CIDR block for the private subnet in availability zone c"
+  default     = "10.0.4.0/24"
 }
 
 variable "region" {
@@ -37,4 +42,19 @@ variable "key_name" {
   description = "The name of the SSH key pair to use for the instance"
   type        = string
   default     = "ktb-11-chatbot-key"
+}
+
+variable "db_name" {
+  description = "The name of the database"
+  default     = "ktbchatbot"
+}
+
+variable "db_username" {
+  description = "The username for the database"
+  default     = "유저네임"
+}
+
+variable "db_password" {
+  description = "The password for the database"
+  default     = "유저패스워드"
 }

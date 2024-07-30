@@ -13,9 +13,14 @@ output "public_subnet_c_id" {
   value       = module.vpc.public_subnet_c_id
 }
 
-output "private_subnet_id" {
-  description = "The ID of the private subnet"
-  value       = module.vpc.private_subnet_id
+output "private_subnet_a_id" {
+  description = "The ID of the private subnet in availability zone a"
+  value       = module.vpc.private_subnet_a_id
+}
+
+output "private_subnet_c_id" {
+  description = "The ID of the private subnet in availability zone c"
+  value       = module.vpc.private_subnet_c_id
 }
 
 output "security_group_id" {
@@ -61,4 +66,14 @@ output "worker2_public_ip" {
 output "worker3_public_ip" {
   description = "The public IP of the worker3 instance"
   value       = module.instances.worker3_public_ip
+}
+
+output "rds_endpoint" {
+  description = "The endpoint of the RDS instance"
+  value       = module.rds.rds_endpoint
+}
+
+output "rds_instance_id" {
+  description = "The ID of the RDS instance"
+  value       = module.rds.rds_instance_id
 }
