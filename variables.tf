@@ -30,7 +30,7 @@ variable "region" {
 
 variable "instance_type" {
   description = "The type of instance to use"
-  default     = "t2.micro"
+  default     = "t3.small"
 }
 
 variable "ami" {
@@ -51,10 +51,10 @@ variable "db_name" {
 
 variable "db_username" {
   description = "The username for the database"
-  default     = "유저네임"
+  default     = ""
 }
 
 variable "db_password" {
   description = "The password for the database"
-  default     = "유저패스워드"
+  default     = ""
 }
