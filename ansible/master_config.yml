@@ -5,7 +5,7 @@
   tasks:
     - name: Initialize Kubernetes Cluster
       ansible.builtin.shell: |
-        kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=10.0.1.223
+        kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=10.0.1.178
 
     - name: Set up kubeconfig for the user
       ansible.builtin.shell: |
