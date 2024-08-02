@@ -1,0 +1,72 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: Update and upgrade apt packages
+      apt:
+        upgrade: yes
+        update_cache: yes
+        cache_valid_time: 86400 #One day
+
+    - name: install Docker
+      apt:
+        name: docker.io
+        state: present
+        update_cache: true
+
+    - name: Enable docker service
+      systemd:
+        enabled=yes
+        name=docker
+
+    - name: Start docker service
+      systemd:
+        name=docker
+        state=started
+
+    - name: Update APT pkg idx
+      ansible.builtin.apt:
+        update-cache: yes
+
+    - name: install APT Transport HTTPS
+      ansible.builtin.apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gpg
+        state: present
+
+    - name: gen the directory & add Kubernetes apt-key
+      ansible.builtin.shell: >
+        curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key |
+        gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+      args:
+        creates: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+    - name: add Kubernetes APT repository
+      ansible.builtin.shell: >
+        echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' |
+        tee /etc/apt/sources.list.d/kubernetes.list
+
+
+    - name: Update APT pkg idx
+      ansible.builtin.apt:
+        update_cache: true
+
+    - name: install kubeadm, kubelet, kubectl
+      ansible.builtin.apt:
+        name:
+          - kubeadm
+          - kubelet
+          - kubectl
+        state: present
+
+    - name: Mark Kubernetes pkg to hold version
+      ansible.builtin.command:
+        apt-mark hold kubelet kubeadm kubectl
+
+    - name: Enable and start kubelet service
+      ansible.builtin.systemd:
+        name: kubelet
+        enabled: yes
+        state: started
