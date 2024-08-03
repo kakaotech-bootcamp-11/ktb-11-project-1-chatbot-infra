@@ -23,13 +23,3 @@
 
     - name: Apply sysctl settings
       ansible.builtin.shell: "sysctl --system"
-
-# Ubuntu에서 SELinux 보안 모듈이 기본적으로 설치가 안되어있기 때문에 SELINUX에서는 설정할 필요 없음, CentOS에서는 필수
-#    - name: Set SELinux to permissive 
-#      ansible.builtin.shell: "setenforce 0"
-
-#    - name: Update SELINUX to permissive in /etc/selinux/config
-#      ansible.builtin.shell: "sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config"
-
-
-

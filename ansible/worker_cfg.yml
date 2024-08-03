@@ -11,13 +11,3 @@
       ansible.builtin.shell: "{{ join_command_raw.stdout }} "
       delegate_to: "{{ item }}"
       loop: "{{ groups['workers'] }}"
-
-
-#- name: Join worker nodes to the cluster
-#  hosts: workers
-#  become: yes
-#  gather_facts: false
-#  tasks:
-#    - name: Join the cluster
-#      ansible.builtin.shell: "{{ join_command.stdout }} "
-
