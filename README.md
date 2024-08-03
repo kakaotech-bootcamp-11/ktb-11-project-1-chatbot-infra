@@ -43,16 +43,25 @@
 ### Ansible
 ```
 ansible/
+├── README.md
 ├── ansible.cfg
+├── config.yml
 ├── hosts.ini
-├── playbook.yml
-└── roles/
-    ├── common/
-    │   └── tasks/
-    │       └── main.yml
-    └── kubernetes/
-        └── tasks/
-            └── main.yml
+├── install_kube_pkg.yml
+├── install_pkg.yml
+├── master_cfg.yml
+├── master_config.yml
+├── modules
+│   └── kubernetes
+│       └── tasks
+├── roles
+│   ├── common
+│   │   └── tasks
+│   │       └── main.yml
+│   └── kubernetes
+│       └── tasks
+│           └── main.yml
+└── worker_cfg.yml
 ```
 
 
