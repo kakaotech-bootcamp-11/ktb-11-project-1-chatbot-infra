@@ -1,5 +1,5 @@
 provider "aws" {
-  profile = ""
+  profile = "terraform-user"
   region  = var.region
   assume_role {
     role_arn = "arn:aws:iam::851725627278:role/TerraformAssumedRole"
