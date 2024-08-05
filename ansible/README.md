@@ -8,6 +8,17 @@
 - master_config.yml : kubeadm init, set kubeconfig, isntall CNI
 - worker_config.yml : worker node join the cluster
 
+## hosts.ini 생성하기
+```yaml
+[masters]
+master ansible_host=<마스터노드 public ip>
+
+[workers]
+worker1 ansible_host=<워커노드1 public ip>
+worker2 ansible_host=<워커노드2 public ip>
+worker3 ansible_host=<워커노드3 public ip>
+```
+
 ## secrets.yml 생성하기
 ```yaml
 private_key_file: "<키 파일 경로>"
