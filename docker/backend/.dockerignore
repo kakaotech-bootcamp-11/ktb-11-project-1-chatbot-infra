@@ -1,0 +1,29 @@
+# 빌드 디렉토리 무시 (이미지에 포함할 필요 없음)
+target/
+*.log
+*.tmp
+Dockerfile
+
+# 소스 코드 디렉토리 무시 (이미지에 포함할 필요 없음)
+src/
+
+# Gradle 관련 파일 및 디렉토리 무시 (이미지에 포함할 필요 없음)
+.gradle/
+build.gradle
+build.gradle.kts
+settings.gradle
+settings.gradle.kts
+gradle/
+gradlew
+gradlew.bat
+
+# Maven 관련 파일 및 디렉토리 무시 (이미지에 포함할 필요 없음)
+.mvn/
+pom.xml
+
+# IDEA 관련 파일 무시
+.idea/
+*.iml
+
+# MacOS 관련 파일 무시
+.DS_Store
