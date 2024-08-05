@@ -6,7 +6,7 @@ aws configure --profile terraform-user
 ```
    프롬프트에 따라 AWS Access Key, Secret Access Key, 리전 및 출력 형식을 입력합니다.
 
-### terraform.tfvars 생성하기
+### terraform.tfvars 생성하기 (파일 위치는 하단 구조 참고)
 ```yaml
 db_username = "DB 유저네임"
 db_password = "DB 패스워드"
@@ -18,6 +18,32 @@ terraform apply -var-file="terraform.tfvars"
 ```
 
 ---
+### Terraform 구조
+```
+terraform/
+├── main.tf
+├── variables.tf
+├── outputs.tf
+├── terraform.tfvars
+├── terraform.tfstate
+└── modules/
+    ├── vpc/
+    │   ├── main.tf
+    │   ├── variables.tf
+    │   └── outputs.tf
+    ├── security_groups/
+    │   ├── main.tf
+    │   ├── variables.tf
+    │   └── outputs.tf
+    ├── instances/
+    │   ├── main.tf
+    │   ├── variables.tf
+    │   └── outputs.tf
+    └── rds/
+        ├── main.tf
+        ├── variables.tf
+        └── outputs.tf
+```
 ## 구성
 
 ### Terraform 모듈

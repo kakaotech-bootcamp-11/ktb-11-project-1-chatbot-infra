@@ -8,7 +8,26 @@
 - master_config.yml : kubeadm init, set kubeconfig, isntall CNI
 - worker_config.yml : worker node join the cluster
 
-## 설치 및 실행 방법
+### Ansible 구조
+```
+ansible/
+├── ansible.cfg
+├── hosts.ini
+├── playbook.yml
+├── roles
+│   ├── common
+│   │   └── tasks
+│   │       ├── install_pkg.yml
+│   │       └── config.yml
+│   └── kubernetes
+│       └── tasks
+│           ├── install_kube_pkg.yml
+│           ├── master_config.yml
+│           └── worker_config.yml
+└── secrets.yaml
+```
+
+## 설치 방법
 ### Ansible 설치
 1. Ansible 설치:
     ```sh
@@ -19,7 +38,7 @@
     ```sh
     ansible --version
     ```
-
+## 파일 생성 및 실행 방법 (파일 위치는 상단 구조 참고)
 ### hosts.ini 생성하기
 ```yaml
 [masters]

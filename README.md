@@ -14,6 +14,8 @@ terraform/
 ├── main.tf
 ├── variables.tf
 ├── outputs.tf
+├── terraform.tfvars
+├── terraform.tfstate
 └── modules/
     ├── vpc/
     │   ├── main.tf
@@ -31,8 +33,6 @@ terraform/
         ├── main.tf
         ├── variables.tf
         └── outputs.tf
-
-
 ```
 
 
@@ -53,7 +53,6 @@ ansible/
 │           ├── master_config.yml
 │           └── worker_config.yml
 └── secrets.yaml
-
 ```
 
 ### Kubernetes
