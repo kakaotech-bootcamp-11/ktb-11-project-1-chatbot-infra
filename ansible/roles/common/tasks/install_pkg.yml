@@ -1,0 +1,6 @@
+- name: Install vim and git
+  ansible.builtin.apt:
+    name:
+      - vim
+      - git
+    state: present

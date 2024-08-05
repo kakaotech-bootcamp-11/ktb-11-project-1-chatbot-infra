@@ -7,7 +7,20 @@
 		iptables configure, 
 - master_config.yml : kubeadm init, set kubeconfig, isntall CNI
 - worker_config.yml : worker node join the cluster
-# 실행 순서
+
+## secrets.yml 생성하기
+```yaml
+private_key_file: "<키 파일 경로>"
+```
+
+## Ansible 실행
+```
+ansible-playbook playbook.yml
+```
+
+### 실행 순서
 	install_pkg.yml -> install_kube_pkg.yml -> config.yml -> master_config.yml -> worker_cfg.yml
+
+
 
 

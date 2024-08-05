@@ -69,3 +69,6 @@ hosts.ini
 ### Environment Variables ###
 .env
 .env.*
+
+## secret file ##
+ansible/secrets.yml
