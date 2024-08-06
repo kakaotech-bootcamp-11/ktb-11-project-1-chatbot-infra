@@ -11,20 +11,25 @@
 ### Ansible 구조
 ```
 ansible/
+├── README.md
 ├── ansible.cfg
+├── gen_hosts.sh
 ├── hosts.ini
 ├── playbook.yml
 ├── roles
-│   ├── common
-│   │   └── tasks
-│   │       ├── install_pkg.yml
-│   │       └── config.yml
-│   └── kubernetes
-│       └── tasks
-│           ├── install_kube_pkg.yml
-│           ├── master_config.yml
-│           └── worker_config.yml
-└── secrets.yaml
+│   ├── common
+│   │   └── tasks
+│   │       ├── config.yml
+│   │       └── install_pkg.yml
+│   └── kubernetes
+│       ├── tasks
+│       │   ├── install_kube_pkg.yml
+│       │   ├── master_config.yml
+│       │   └── worker_config.yml
+│       └── vars
+│           └── main.yml
+└── secrets.yml
+
 ```
 
 ## 설치 방법
@@ -63,6 +68,7 @@ ansible-playbook playbook.yml
 ### playbook 내 실행 순서
 	install_pkg.yml -> install_kube_pkg.yml -> config.yml -> master_config.yml -> worker_cfg.yml
 
-
-
-
+### gen_hosts.sh
+chmod+x 로 실행권한 부여한 후 실행
+수행내용 : 자동으로 instances의 public ip를 hosts.ini 파일 내용 작성
+수행내용 : .tfstate file에서 master instance의 private ip 값 추출해서 /roles/kubernetes/vars/main.yml에 추가함

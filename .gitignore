@@ -1,7 +1,6 @@
 ### Ansible ###
 *.retry
 ## ansible 폴더는 8/2 임시로 ansible 폴더 yml 작업중이라서 gitignore에 추가함
-ansible/master_cfg.yml
 ansible/hosts.ini
 ansible/ansible.cfg
 
