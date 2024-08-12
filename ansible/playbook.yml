@@ -24,7 +24,7 @@
     ansible_ssh_private_key_file: "{{ private_key_file }}"
     master_private_ip_addr: "{{ master_private_ip }}"
   tasks:
-    - name: Include master_config tasks
+    - name: Include master_config tasks and CNI install
       include_tasks: roles/kubernetes/tasks/master_config.yml
 
     - name: Include worker_cfg tasks
