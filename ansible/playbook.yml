@@ -8,11 +8,11 @@
     - name: Include install_pkg tasks
       include_tasks: roles/common/tasks/install_pkg.yml
 
-    - name: Include install_kube_pkg tasks
-      include_tasks: roles/kubernetes/tasks/install_kube_pkg.yml
-
     - name: Include config tasks
       include_tasks: roles/common/tasks/config.yml
+
+    - name: Include install_kube_pkg tasks
+      include_tasks: roles/kubernetes/tasks/install_kube_pkg.yml
 
 - hosts: masters
   become: yes

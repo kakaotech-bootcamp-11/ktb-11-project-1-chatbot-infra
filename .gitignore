@@ -3,6 +3,8 @@
 ## ansible 폴더는 8/2 임시로 ansible 폴더 yml 작업중이라서 gitignore에 추가함
 ansible/hosts.ini
 ansible/ansible.cfg
+ansible/roles/kubernetes/vars/main.yml
+ansible/rollback.yml
 
 
 ## RSA key file

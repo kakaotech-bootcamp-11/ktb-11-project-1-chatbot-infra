@@ -1,6 +1,8 @@
-- name: Install vim and git
-  ansible.builtin.apt:
-    name:
-      - vim
-      - git
-    state: present
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+- name: Upgrade all packages
+  apt:
+    upgrade: yes
+    update_cache: yes
