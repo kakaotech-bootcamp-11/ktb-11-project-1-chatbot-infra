@@ -23,7 +23,12 @@ variable "public_subnet_c_id" {
   type        = string
 }
 
-variable "security_group_id" {
-  description = "The ID of the security group"
+variable "master_security_group_id" {
+  description = "The ID of the master security group"
+  type        = string
+}
+
+variable "worker_security_group_id" {
+  description = "The ID of the worker security group"
   type        = string
 }
