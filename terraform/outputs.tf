@@ -23,9 +23,19 @@ output "private_subnet_c_id" {
   value       = module.vpc.private_subnet_c_id
 }
 
-output "security_group_id" {
-  description = "The ID of the security group"
-  value       = module.security_groups.security_group_id
+output "instance_master_security_group_id" {
+  description = "The ID of the instance security group"
+  value       = module.security_groups.ktb_11_chatbot_master_sg_id
+}
+
+output "instance_worker_security_group_id" {
+  description = "The ID of the instance security group"
+  value       = module.security_groups.ktb_11_chatbot_worker_sg_id
+}
+
+output "rds_security_group_id" {
+  description = "The ID of the RDS security group"
+  value       = module.security_groups.ktb_11_chatbot_rds_sg_id
 }
 
 output "master_instance_id" {
