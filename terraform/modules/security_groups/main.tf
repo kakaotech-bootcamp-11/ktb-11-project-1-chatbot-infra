@@ -9,6 +9,30 @@ resource "aws_security_group" "ktb_11_chatbot_master_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  # 외부에서 HTTP 트래픽 허용 (포트 80)
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # 외부에서 HTTPS 트래픽 허용 (포트 443)
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+    # IP-in-IP 트래픽 허용
+    ingress {
+      from_port   = 4
+      to_port     = 4
+      protocol    = "4"  # IP-in-IP 프로토콜
+      cidr_blocks = [var.vpc_cidr]
+    }
+
   # Kubernetes API 서버 접근을 특정 서브넷으로 제한
   ingress {
     from_port   = 6443
@@ -76,6 +100,30 @@ resource "aws_security_group" "ktb_11_chatbot_worker_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  # 외부에서 HTTP 트래픽 허용 (포트 80)
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # 외부에서 HTTPS 트래픽 허용 (포트 443)
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # IP-in-IP 트래픽 허용
+  ingress {
+    from_port   = 4
+    to_port     = 4
+    protocol    = "4"  # IP-in-IP 프로토콜
+    cidr_blocks = [var.vpc_cidr]
+  }
+
   # Kubelet API 접근 허용
   ingress {
     from_port   = 10250
@@ -107,6 +155,14 @@ resource "aws_security_group" "ktb_11_chatbot_worker_sg" {
 
 resource "aws_security_group" "ktb_11_chatbot_rds_sg" {
   vpc_id = var.vpc_id
+
+    # MySQL 접근 허용 (VPC 내부에서만)
+    ingress {
+      from_port   = 3306
+      to_port     = 3306
+      protocol    = "tcp"
+      cidr_blocks = [var.vpc_cidr]  # VPC 내부 접근만 허용
+    }
 
   # 모든 아웃바운드 트래픽 허용
   egress {
