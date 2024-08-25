@@ -6,3 +6,8 @@
   apt:
     upgrade: yes
     update_cache: yes
+- name: install podman
+  apt:
+    name: podman
+    state: present
+
