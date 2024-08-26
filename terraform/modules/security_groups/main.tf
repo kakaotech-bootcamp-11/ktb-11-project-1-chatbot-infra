@@ -86,6 +86,7 @@ resource "aws_security_group" "ktb_11_chatbot_master_sg" {
 
   tags = {
     Name = "ktb-11-chatbot-master-sg"
+    "kubernetes.io/cluster/kubernetes" = "shared"
   }
 }
 
@@ -150,6 +151,7 @@ resource "aws_security_group" "ktb_11_chatbot_worker_sg" {
 
   tags = {
     Name = "ktb-11-chatbot-worker-sg"
+    "kubernetes.io/cluster/kubernetes" = "shared"
   }
 }
 
@@ -174,6 +176,7 @@ resource "aws_security_group" "ktb_11_chatbot_rds_sg" {
 
   tags = {
     Name = "ktb-11-chatbot-rds-sg"
+    "kubernetes.io/cluster/kubernetes" = "shared"
   }
 }
 

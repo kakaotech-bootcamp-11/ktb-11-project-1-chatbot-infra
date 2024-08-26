@@ -14,6 +14,8 @@ resource "aws_subnet" "public_a" {
   map_public_ip_on_launch = true
   tags = {
     Name = "ktb-11-chatbot-public-a"
+    "kubernetes.io/cluster/kubernetes" = "shared"
+    "kubernetes.io/role/elb" = 1
   }
 }
 
@@ -24,6 +26,8 @@ resource "aws_subnet" "public_c" {
   map_public_ip_on_launch = true
   tags = {
     Name = "ktb-11-chatbot-public-c"
+    "kubernetes.io/cluster/kubernetes" = "shared"
+    "kubernetes.io/role/elb" = 1
   }
 }
 
@@ -34,6 +38,8 @@ resource "aws_subnet" "private_a" {
   availability_zone = "ap-northeast-2a"
   tags = {
     Name = "ktb-11-chatbot-private-a"
+    "kubernetes.io/cluster/kubernetes" = "shared"
+    "kubernetes.io/role/internal-elb" = 1
   }
 }
 
@@ -43,6 +49,8 @@ resource "aws_subnet" "private_c" {
   availability_zone = "ap-northeast-2c"
   tags = {
     Name = "ktb-11-chatbot-private-c"
+    "kubernetes.io/cluster/kubernetes" = "shared"
+    "kubernetes.io/role/internal-elb" = 1
   }
 }
 
@@ -77,6 +85,8 @@ resource "aws_route_table" "ktb_11_chatbot_public_rt" {
 
   tags = {
     Name = "ktb-11-chatbot-public-rt"
+    "kubernetes.io/cluster/kubernetes" = "shared"
+    "kubernetes.io/role/elb" = 1
   }
 }
 
@@ -90,6 +100,8 @@ resource "aws_route_table" "ktb_11_chatbot_private_rt" {
 
   tags = {
     Name = "ktb-11-chatbot-private-rt"
+    "kubernetes.io/cluster/kubernetes" = "shared"
+    "kubernetes.io/role/internal-elb" = 1
   }
 }
 

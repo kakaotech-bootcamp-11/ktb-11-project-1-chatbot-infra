@@ -73,3 +73,6 @@ hosts.ini
 
 ## secret file ##
 ansible/secrets.yml
+
+## kubernetes file ##
+kubernetes/secret.yml
