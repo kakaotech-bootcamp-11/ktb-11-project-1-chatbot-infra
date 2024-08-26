@@ -11,6 +11,7 @@ resource "aws_instance" "ktb_11_chatbot_master" {
 
   tags = {
     Name = "ktb-11-chatbot-master"
+    "kubernetes.io/cluster/kubernetes" = "shared"
   }
 }
 
@@ -27,6 +28,7 @@ resource "aws_instance" "ktb_11_chatbot_worker1" {
 
   tags = {
     Name = "ktb-11-chatbot-worker1"
+    "kubernetes.io/cluster/kubernetes" = "shared"
   }
 }
 
@@ -43,6 +45,7 @@ resource "aws_instance" "ktb_11_chatbot_worker2" {
 
   tags = {
     Name = "ktb-11-chatbot-worker2"
+    "kubernetes.io/cluster/kubernetes" = "shared"
   }
 }
 
@@ -59,5 +62,6 @@ resource "aws_instance" "ktb_11_chatbot_worker3" {
 
   tags = {
     Name = "ktb-11-chatbot-worker3"
+    "kubernetes.io/cluster/kubernetes" = "shared"
   }
 }
