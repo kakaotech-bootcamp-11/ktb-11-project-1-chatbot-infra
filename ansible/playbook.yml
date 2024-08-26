@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: all # origin all
   become: yes
   vars_files:
     - secrets.yml
