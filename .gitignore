@@ -76,3 +76,6 @@ ansible/secrets.yml
 
 ## kubernetes file ##
 kubernetes/secret.yml
+
+## application-prod file ##
+docker/backend/application-prod.yml
