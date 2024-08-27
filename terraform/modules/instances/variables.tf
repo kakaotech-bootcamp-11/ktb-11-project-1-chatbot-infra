@@ -32,3 +32,13 @@ variable "worker_security_group_id" {
   description = "The ID of the worker security group"
   type        = string
 }
+
+variable "master_instance_profile_name" {
+  description = "The name of the master master role"
+  type        = string
+}
+
+variable "worker_instance_profile_name" {
+  description = "The name of the worker master role"
+  type        = string
+}

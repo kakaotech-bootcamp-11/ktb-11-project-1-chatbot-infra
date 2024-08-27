@@ -58,3 +58,8 @@ variable "db_password" {
   description = "The password for the database"
   type = string
 }
+
+variable "route53_zone_id" {
+  description = "Route 53 호스팅 영역의 ID"
+  type        = string
+}
