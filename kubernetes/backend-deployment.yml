@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: ktb-chatbot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: ktb11chatbot/ktb-11-project-1-chatbot-be:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: SPRING_DATASOURCE_URL
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: oauth2-secrets
+                  key: SPRING_DATASOURCE_USERNAME
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: oauth2-secrets
+                  key: SPRING_DATASOURCE_PASSWORD
+            - name: OAUTH2_HOME
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: OAUTH2_HOME
+            - name: OAUTH2_REDIRECT_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: OAUTH2_REDIRECT_URI
