@@ -18,3 +18,8 @@ spec:
           image: ktb11chatbot/ktb-11-project-1-chatbot-fe:latest
           ports:
             - containerPort: 3000
+          resources:
+            requests:
+              ephemeral-storage: "2Gi"
+            limits:
+              ephemeral-storage: "4Gi"
