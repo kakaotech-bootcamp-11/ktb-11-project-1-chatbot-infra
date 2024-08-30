@@ -4,6 +4,12 @@ metadata:
   name: app-config
   namespace: ktb-chatbot
 data:
+  # 기존 백엔드 환경 변수
   SPRING_DATASOURCE_URL: jdbc:mysql://ktb11project.c746ki28c20o.ap-northeast-2.rds.amazonaws.com:3306/ktbchatbot
   OAUTH2_HOME: http://ktb-chatbot.shop/
   OAUTH2_REDIRECT_URI: http://ktb-chatbot.shop/api/login/oauth2/code
+  WEATHER_API_URI: https://api.openweathermap.org
+  AI_SERVER_URI: http://ktb-chatbot.shop/nlp-api
+  TRAFFIC_SERVER_URI: https://apis.openapi.sk.com/tmap/routes/routeOptimization10
+  LOCATION1: Seongnam-si
+  PDF_PATH: ./data/ktb_data_08.pdf

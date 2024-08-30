@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nlp-deployment
+  namespace: ktb-chatbot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nlp
+  template:
+    metadata:
+      labels:
+        app: nlp
+    spec:
+      containers:
+        - name: nlp
+          image: ktb11chatbot/ktb-11-project-1-chatbot-nlp:latest
+          ports:
+            - containerPort: 5001
+          env:
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: oauth2-secrets
+                  key: OPENAI_API_KEY
+            - name: WEATHER_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: oauth2-secrets
+                  key: WEATHER_API_KEY
+            - name: KAKAO_MAP_API_KEY1
+              valueFrom:
+                secretKeyRef:
+                  name: oauth2-secrets
+                  key: KAKAO_MAP_API_KEY1
+            - name: TMAP_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: oauth2-secrets
+                  key: T_MAP_API_KEY
+            - name: LOCATION1
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: LOCATION1
+            - name: PDF_PATH
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: PDF_PATH
+          resources:
+            requests:
+              ephemeral-storage: "3Gi"
+            limits:
+              ephemeral-storage: "5Gi"

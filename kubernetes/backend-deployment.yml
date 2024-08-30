@@ -44,3 +44,43 @@ spec:
                 configMapKeyRef:
                   name: app-config
                   key: OAUTH2_REDIRECT_URI
+            - name: OAUTH2_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: oauth2-secrets
+                  key: OAUTH2_CLIENT_ID
+            - name: OAUTH2_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: oauth2-secrets
+                  key: OAUTH2_CLIENT_SECRET
+            - name: WEATHER_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: oauth2-secrets
+                  key: WEATHER_API_KEY
+            - name: T_MAP_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: oauth2-secrets
+                  key: T_MAP_API_KEY
+            - name: WEATHER_API_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: WEATHER_API_URI
+            - name: AI_SERVER_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: AI_SERVER_URI
+            - name: TRAFFIC_SERVER_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: TRAFFIC_SERVER_URI
+          resources:
+            requests:
+              ephemeral-storage: "1Gi"  # 최소 500Mi 보장
+            limits:
+              ephemeral-storage: "2Gi"  # 최대 2GiB 사용 가능
