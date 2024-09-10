@@ -12,8 +12,6 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN pip uninstall -y pymupdf && pip install pymupdf
-
 COPY . .
 
 ENV FLASK_APP=app.py
