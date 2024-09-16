@@ -1,0 +1,41 @@
+#frontend-kaniko-ci.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: devops-tools
+  name: kaniko-frontend
+spec:
+  containers:
+  - name: kaniko
+    image: gcr.io/kaniko-project/executor:latest
+    env:
+      - name: GIT_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: kaniko-secrets
+            key: GIT_TOKEN
+    args: [ "--dockerfile=./Dockerfile",
+      "--context=git://github.com/kakaotech-bootcamp-11/ktb-11-project-1-chatbot-fe.git#refs/heads/main",
+      "--destination=docker.io/ktb11chatbot/ktb-11-project-1-chatbot-fe:60bb756",
+      "--build-arg=GIT_CREDENTIALS=${GIT_TOKEN}" ]
+    volumeMounts:
+      - name: kaniko-secret
+        mountPath: /kaniko/.docker
+
+    volumeMounts:
+      - name: kaniko-secret
+        mountPath: /kaniko/.docker
+      - name: dockerfile-storage
+        mountPath: /workspace
+  restartPolicy: Never
+
+  volumes:
+    - name: kaniko-secret
+      secret:
+        secretName: regcred
+        items:
+          - key: .dockerconfigjson
+            path: config.json
+    - name: dockerfile-storage
+      persistentVolumeClaim:
+        claimName: kaniko-pv-claim

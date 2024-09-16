@@ -1,13 +1,4 @@
-# namespace는 임의로 작성해도 됨 하지만 앞으로 생성하게 될 매니페스트들에서 사용되는
-# 네임스페이스는 통일시켜야함
 #jenkins-volume.yaml
-kind: StorageClass
-apiVersion: storage.k8s.io/v1
-metadata:
-  name: local-storage
-provisioner: kubernetes.io/no-provisioner
-volumeBindingMode: WaitForFirstConsumer
-
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -16,7 +7,7 @@ metadata:
   labels:
     type: nfs
 spec:
-  storageClassName: nfs-storage # name 통일
+  storageClassName: nfs-storage
   claimRef:
     name: jenkins-pv-claim
     namespace: devops-tools
@@ -26,7 +17,7 @@ spec:
     - ReadWriteMany
   nfs:
     path: /nfs_shared/jenkins
-    server: {{ master-private-ip }}
+    server: 10.0.1.104
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -34,11 +25,9 @@ metadata:
   name: jenkins-pv-claim
   namespace: devops-tools
 spec:
-  storageClassName: nfs-storage # name 통일
+  storageClassName: nfs-storage
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 3Gi
-# jenkins-volume.yaml end
-
