@@ -16,6 +16,7 @@ spec:
       labels:
         app: prometheus
     spec:
+      automountServiceAccountToken: true # 토큰이 자동으로 mount되어야 kubelet API에 접근가능
       serviceAccountName: prometheus
       securityContext:
         runAsUser: 1000

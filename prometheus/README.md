@@ -54,4 +54,14 @@ Prometheus를 배포하려면 다음 순서대로 매니페스트를 적용하�
       ```bash
       kubectl apply -f node-exporter-daemonset.yaml
       ```
+Kube-state-metrics 배포 순서
 
+1. service-account.yaml
+
+2. cluster-role.yaml
+
+3. cluster-role-binding.yaml
+
+4. deployment.yaml
+
+5. service.yaml
