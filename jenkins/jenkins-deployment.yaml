@@ -12,6 +12,10 @@ spec:
     metadata:
       labels:
         app: jenkins-server
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/metrics"
     spec:
       securityContext:
             fsGroup: 1000
@@ -19,14 +23,16 @@ spec:
       serviceAccountName: jenkins-admin
       containers:
         - name: jenkins
-          image: jenkins/jenkins:lts
+          image: ktb11chatbot/ktb-11-project-1-jenkins-image:v.0.0.4
           resources:
             limits:
               memory: "2Gi"
               cpu: "1000m"
+              ephemeral-storage: "2Gi"
             requests:
               memory: "500Mi"
               cpu: "500m"
+              ephemeral-storage: "1Gi"
           ports:
             - name: httpport
               containerPort: 8080
@@ -51,13 +57,11 @@ spec:
           volumeMounts:
             - name: jenkins-data
               mountPath: /var/jenkins_home
-            - name: kubectl-bin # pipeline으로 CI/CD 하기 위한 설정
+            - name: kubectl-bin
               mountPath: /usr/bin/kubectl
-            - name: podman-bin # pipeline으로 CI/CD 하기 위한 설정
-              mountPath: /usr/bin/podman
-            - name: containerd-bin # pipeline으로 CI/CD 하기 위한 설정
+            - name: containerd-bin
               mountPath: /usr/bin/containerd
-            - name: containerd-sock # pipeline으로 CI/CD 하기 위한 설정
+            - name: containerd-sock
               mountPath: /run/containerd/containerd.sock
       volumes:
         - name: jenkins-data
@@ -66,10 +70,6 @@ spec:
         - name: kubectl-bin
           hostPath:
             path: /usr/bin/kubectl
-            type: File
-        - name: podman-bin
-          hostPath:
-            path: /usr/bin/podman
             type: File
         - name: containerd-bin
           hostPath:
