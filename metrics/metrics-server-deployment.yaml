@@ -1,0 +1,57 @@
+---
+#metrics-server-deployment.yaml
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: metrics-server
+  namespace: kube-system
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metrics-server
+  namespace: kube-system
+  labels:
+    k8s-app: metrics-server
+spec:
+  selector:
+    matchLabels:
+      k8s-app: metrics-server
+  template:
+    metadata:
+      name: metrics-server
+      labels:
+        k8s-app: metrics-server
+    spec:
+      hostNetwork: true
+      serviceAccountName: metrics-server
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
+      volumes:
+      # mount in tmp so we can safely use from-scratch images and/or read-only containers
+      - name: tmp-dir
+        emptyDir: {}
+      - name: nfs-metrics
+        nfs:
+          server: 10.0.1.104
+          path: /nfs_shared/metrics
+      containers:
+      - name: metrics-server
+        image: k8s.gcr.io/metrics-server/metrics-server:v0.5.2
+        args:
+          - --cert-dir=/nfs_shared/metrics
+          - --metric-resolution=15s
+          - --kubelet-preferred-address-types=InternalIP
+          - --kubelet-insecure-tls
+          - --secure-port=8443
+        ports:
+          - name: https
+            containerPort: 8443
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: tmp-dir
+          mountPath: /tmp
+        - name: nfs-metrics
+          mountPath: /nfs_shared/metrics
