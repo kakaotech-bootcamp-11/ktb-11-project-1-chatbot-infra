@@ -1,0 +1,33 @@
+#metrics-NFS-volume.yaml
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: metrics-pv-volume
+  labels:
+    type: nfs
+spec:
+  storageClassName: nfs-storage
+  claimRef:
+    name: metrics-pv-claim
+    namespace: kube-system
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    path: /nfs_shared/metrcis
+    server: {{ master private ip }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: metrics-pv-claim
+  namespace: kube-system
+spec:
+  storageClassName: nfs-storage
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 3Gi
